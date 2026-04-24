@@ -13,16 +13,8 @@ jobs:
     steps:
       - name: Ping Supabase
         run: |
-          curl -f "https://pzglqzzamwbkrwckhynb.supabase.co/rest/v1/warbound_profiles?select=id&limit=1" \
-            -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}" \
-            -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY }}" \
-            && echo "✅ Supabase aktif!" \
-            || echo "⚠️ Tidak bisa ping tapi project tetap aktif"            -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}" \
-            -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY }}"
-          echo "✅ Ping kedua selesai."
-
-      - name: ✅ Laporan hasil
-        if: always()
-        run: |
-          echo "Waktu: $(date -u '+%Y-%m-%d %H:%M UTC')"
-          echo "Status: ${{ steps.ping.outputs.status }}"
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+            "https://pzglqzzamwbkrwckhynb.supabase.co/rest/v1/warbound_profiles?select=id&limit=1" \
+            -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}")
+          echo "HTTP Status: $STATUS"
+          exit 0

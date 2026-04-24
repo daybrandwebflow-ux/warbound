@@ -1,0 +1,27 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background: #060809;
+  color: #c9d4c7;
+  font-family: 'Share Tech Mono', monospace;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: #0a0e10; }
+::-webkit-scrollbar-thumb { background: #2a3828; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: #d97706; }
+
+/* Selection */
+::selection { background: rgba(217, 119, 6, 0.3); color: #fff; }
